@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <link rel="stylesheet" href="css/leaflet.css"><link rel="stylesheet" href="css/L.Control.Locate.min.css">
+        <link rel="stylesheet" href="css/qgis2web.css"><link rel="stylesheet" href="css/fontawesome-all.min.css">
+        <style>
+        html, body, #map {
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            margin: 0;
+        }
+        </style>
+        <title></title>
+    </head>
+    <body>
+        <div id="map">
+        </div>
+        <script src="js/qgis2web_expressions.js"></script>
+        <script src="js/leaflet.js"></script><script src="js/L.Control.Locate.min.js"></script>
+        <script src="js/leaflet.rotatedMarker.js"></script>
+        <script src="js/leaflet.pattern.js"></script>
+        <script src="js/leaflet-hash.js"></script>
+        <script src="js/Autolinker.min.js"></script>
+        <script src="js/rbush.min.js"></script>
+        <script src="js/labelgun.min.js"></script>
+        <script src="js/labels.js"></script>
+        <script src="data/Portoalegre_1.js"></script>
+        <script>
+        var map = L.map('map', {
+            zoomControl:true, maxZoom:28, minZoom:1
+        }).fitBounds([[-30.0584827121376,-51.21819335706908],[-30.01745349471945,-51.13868894982287]]);
+        var hash = new L.Hash(map);
+        map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
+        var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
+        L.control.locate({locateOptions: {maxZoom: 19}}).addTo(map);
+        var bounds_group = new L.featureGroup([]);
+        function setBounds() {
+        }
+        map.createPane('pane_GoogleRoad_0');
+        map.getPane('pane_GoogleRoad_0').style.zIndex = 400;
+        var layer_GoogleRoad_0 = L.tileLayer('https://mt1.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', {
+            pane: 'pane_GoogleRoad_0',
+            opacity: 1.0,
+            attribution: '<a href="https://www.google.at/permissions/geoguidelines/attr-guide.html">Map data ©2015 Google</a>',
+            minZoom: 1,
+            maxZoom: 28,
+            minNativeZoom: 0,
+            maxNativeZoom: 20
+        });
+        layer_GoogleRoad_0;
+        map.addLayer(layer_GoogleRoad_0);
+        function pop_Portoalegre_1(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2"><strong>Município</strong><br />' + (feature.properties['NM_MUN'] !== null ? autolinker.link(feature.properties['NM_MUN'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Bairro</strong><br />' + (feature.properties['Bairro'] !== null ? autolinker.link(feature.properties['Bairro'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Habitantes</strong><br />' + (feature.properties['Habitantes'] !== null ? autolinker.link(feature.properties['Habitantes'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Renda média</strong><br />' + (feature.properties['Renda media mensal'] !== null ? autolinker.link(feature.properties['Renda media mensal'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_Portoalegre_1_0(feature) {
+            if (feature.properties['Renda media mensal'] >= 0.000000 && feature.properties['Renda media mensal'] <= 1833.420000 ) {
+                return {
+                pane: 'pane_Portoalegre_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,0.6)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(48,18,59,0.6)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Renda media mensal'] >= 1833.420000 && feature.properties['Renda media mensal'] <= 3007.080000 ) {
+                return {
+                pane: 'pane_Portoalegre_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,0.6)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(40,188,235,0.6)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Renda media mensal'] >= 3007.080000 && feature.properties['Renda media mensal'] <= 4604.370000 ) {
+                return {
+                pane: 'pane_Portoalegre_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,0.6)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(164,252,60,0.6)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Renda media mensal'] >= 4604.370000 && feature.properties['Renda media mensal'] <= 7065.550000 ) {
+                return {
+                pane: 'pane_Portoalegre_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,0.6)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(251,126,33,0.6)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Renda media mensal'] >= 7065.550000 && feature.properties['Renda media mensal'] <= 13572.140000 ) {
+                return {
+                pane: 'pane_Portoalegre_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,0.6)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(122,4,3,0.6)',
+                interactive: true,
+            }
+            }
+        }
+        map.createPane('pane_Portoalegre_1');
+        map.getPane('pane_Portoalegre_1').style.zIndex = 401;
+        map.getPane('pane_Portoalegre_1').style['mix-blend-mode'] = 'normal';
+        var layer_Portoalegre_1 = new L.geoJson(json_Portoalegre_1, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_Portoalegre_1',
+            layerName: 'layer_Portoalegre_1',
+            pane: 'pane_Portoalegre_1',
+            onEachFeature: pop_Portoalegre_1,
+            style: style_Portoalegre_1_0,
+        });
+        bounds_group.addLayer(layer_Portoalegre_1);
+        map.addLayer(layer_Portoalegre_1);
+        var baseMaps = {};
+        L.control.layers(baseMaps,{'Porto alegre<br /><table><tr><td style="text-align: center;"><img src="legend/Portoalegre_1_018330.png" /></td><td>0 - 1833</td></tr><tr><td style="text-align: center;"><img src="legend/Portoalegre_1_183330071.png" /></td><td>1833 - 3007</td></tr><tr><td style="text-align: center;"><img src="legend/Portoalegre_1_300746042.png" /></td><td>3007 - 4604</td></tr><tr><td style="text-align: center;"><img src="legend/Portoalegre_1_460470663.png" /></td><td>4604 - 7066</td></tr><tr><td style="text-align: center;"><img src="legend/Portoalegre_1_7066135724.png" /></td><td>7066 - 13572</td></tr></table>': layer_Portoalegre_1,"Google Road": layer_GoogleRoad_0,}).addTo(map);
+        setBounds();
+        </script>
+    </body>
+</html>
